@@ -1,5 +1,5 @@
 name: "Vouch Proxy"
-description: "Auth proxy that using Home Assistant as auth provider"
+description: "This add-on allows you to add authentication to other services by leveraging Home Assistant as the auth provider."
 version: "1.0.0"
 slug: "vouch_proxy"
 arch:
@@ -10,7 +10,7 @@ arch:
   - i386
 init: false
 image: "ghcr.io/igor-panteleev/{arch}-hassio-vouch-proxy"
-url: "https://github.com/igor-panteleev/hassio-addons/hassio-vouch-proxy"
+url: "https://github.com/igor-panteleev/hassio-addons/tree/main/hassio-vouch-proxy"
 map:
   - share:rw
 ports:
