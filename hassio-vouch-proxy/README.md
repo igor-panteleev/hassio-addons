@@ -96,6 +96,7 @@ server {
 ##### Notes
 
 - Replace `yourdomain.com`, `vouch.yourdomain.com` and `service.yourdomain.com` with your actual domain names.
+- Check [vouch-proxy repo](https://github.com/vouch/vouch-proxy) for more information.
 
 ## License
 
