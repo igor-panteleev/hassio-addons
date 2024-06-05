@@ -1,0 +1,27 @@
+name: "Vouch Proxy"
+description: "Auth proxy that using Home Assistant as auth provider"
+version: "1.0.0"
+slug: "vouch_proxy"
+arch:
+  - aarch64
+  - amd64
+  - armhf
+  - armv7
+  - i386
+init: false
+image: "ghcr.io/igor-panteleev/{arch}-hassio-vouch-proxy"
+url: "https://github.com/igor-panteleev/hassio-addons/hassio-vouch-proxy"
+map:
+  - share:rw
+ports:
+  9090/tcp: 9090
+options:
+  log_level: warn
+  domain: yourdomain.com
+  hassio_subdomain: homeassistant
+  vouch_subdomain: vouch
+schema:
+  log_level: list(debug|info|warn|error)
+  domain: str
+  hassio_subdomain: str
+  vouch_subdomain: str
