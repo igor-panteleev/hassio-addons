@@ -7,5 +7,5 @@ build_from:
 labels:
   org.opencontainers.image.title: "Home Assistant Add-on: Vouch Proxy"
   org.opencontainers.image.description: "Auth proxy that using Home Assistant as auth provider"
-  org.opencontainers.image.source: "https://github.com/igor-panteleev/hassio-addons/hassio-vouch-proxy"
+  org.opencontainers.image.source: "https://github.com/igor-panteleev/hassio-addons"
   org.opencontainers.image.licenses: "MIT"
