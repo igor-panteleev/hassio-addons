@@ -9,3 +9,6 @@ labels:
   org.opencontainers.image.description: "Auth proxy that using Home Assistant as auth provider"
   org.opencontainers.image.source: "https://github.com/igor-panteleev/hassio-addons"
   org.opencontainers.image.licenses: "MIT"
+cosign:
+  identity: https://github.com/igor-panteleev/hassio-addons/.*
+  base_identity: https://github.com/home-assistant/docker-base/.*
