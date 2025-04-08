@@ -1,0 +1,25 @@
+#!/usr/bin/env bashio
+# shellcheck shell=bash
+set -e
+
+bashio::log.info "Starting pgAdmin..."
+
+##################
+# DEFINE OPTIONS #
+##################
+declare -a options
+options+=(--bind 0.0.0.0:9000)
+options+=(--workers=1)
+options+=(--threads=25)
+options+=(--access-logfile '-')
+options+=(--error-logfile '-')
+options+=(--chdir /usr/local/lib/python3.13/site-packages/pgadmin4)
+options+=(pgAdmin4:app)
+
+
+##################
+# LAUNCH PGADMIN #
+##################
+bashio::log.info "... launching pgAdmin."
+
+exec gunicorn "${options[@]}"
