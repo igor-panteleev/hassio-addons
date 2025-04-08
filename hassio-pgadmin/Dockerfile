@@ -6,7 +6,7 @@ FROM ${BUILD_FROM}
 ARG PGADMIN_VERSION="9.2"
 ARG GUNICORN_VERSION="23.0.0"
 
-RUN apk add --no-cache nginx \
+RUN apk add --no-cache nginx gcc \
     && pip install --no-cache pgadmin4==${PGADMIN_VERSION} gunicorn==${GUNICORN_VERSION}
 
 COPY rootfs /
