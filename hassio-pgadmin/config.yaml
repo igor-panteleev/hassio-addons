@@ -1,0 +1,16 @@
+name: "pgAdmin"
+description: "This add-on allows you to run pgAdmin as Home Assistant addon."
+version: "1.0.0"
+slug: "pgAdmin"
+arch:
+  - aarch64
+  - amd64
+  - armhf
+  - armv7
+  - i386
+init: false
+image: "ghcr.io/igor-panteleev/{arch}-hassio-pgadmin"
+url: "https://github.com/igor-panteleev/hassio-addons/tree/main/hassio-pgadmin"
+ingress: true
+map:
+  - data:rw
