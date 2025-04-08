@@ -12,5 +12,3 @@ init: false
 image: "ghcr.io/igor-panteleev/{arch}-hassio-pgadmin"
 url: "https://github.com/igor-panteleev/hassio-addons/tree/main/hassio-pgadmin"
 ingress: true
-map:
-  - data:rw
