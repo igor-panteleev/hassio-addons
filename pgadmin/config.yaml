@@ -1,6 +1,6 @@
 name: "pgAdmin"
 description: "pgAdmin"
-version: "1.0.2"
+version: "1.0.3"
 slug: "pgAdmin"
 arch:
   - aarch64
@@ -14,14 +14,5 @@ ingress_stream: true
 panel_icon: mdi:database-edit
 map:
   - share:rw
-  - ssl
-options:
-  certfile: fullchain.pem
-  keyfile: privkey.pem
-  ssl: false
-schema:
-  certfile: str
-  keyfile: str
-  ssl: bool
 ports:
-  9099/tcp: 9000
+  9099/tcp: 9001
