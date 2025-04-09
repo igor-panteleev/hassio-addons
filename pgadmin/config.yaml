@@ -1,6 +1,6 @@
 name: "pgAdmin"
 description: "pgAdmin"
-version: "1.0.4"
+version: "1.0.5"
 slug: "pgAdmin"
 arch:
   - aarch64
@@ -11,7 +11,7 @@ image: "ghcr.io/igor-panteleev/{arch}-hassio-pgadmin"
 url: "https://github.com/igor-panteleev/hassio-addons/tree/main/pgadmin"
 ingress: true
 ingress_stream: true
-panel_icon: mdi:database-edit
+panel_icon: "mdi:database-edit"
 map:
   - share:rw
 ports:

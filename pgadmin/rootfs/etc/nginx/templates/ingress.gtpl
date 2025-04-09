@@ -6,8 +6,6 @@ server {
   client_max_body_size 0;
 
   location / {
-    rewrite ^/api/hassio_ingress/[^/]+(/.*)$ $1 break;
-    
     proxy_pass http://backend/;
     resolver 127.0.0.11 valid=180s;
     proxy_set_header X-Script-Name $http_x_ingress_path;
