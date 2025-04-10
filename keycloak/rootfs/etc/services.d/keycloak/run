@@ -1,0 +1,11 @@
+#!/usr/bin/env bashio
+# shellcheck shell=bash
+set -e
+
+APP_DIR="/var/app"
+
+bashio::log.info "Starting keycloak..."
+"${APP_DIR}/bin/kc.sh" build
+
+bashio::log.info "... launching keycloak."
+exec "${APP_DIR}/bin/kc.sh" start --optimized
