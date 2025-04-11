@@ -2,5 +2,10 @@
 # shellcheck shell=bash
 set -e
 
+APP_DIR="/var/app"
+
 bashio::log.info "Starting keycloak..."
-exec "/var/app/bin/kc.sh" start --optimized
+"${APP_DIR}/bin/kc.sh" build
+
+bashio::log.info "... launching keycloak."
+exec "${APP_DIR}/bin/kc.sh" start --optimized

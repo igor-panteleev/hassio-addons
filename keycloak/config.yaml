@@ -1,6 +1,6 @@
 name: "Keycloak"
 description: "Keycloak"
-version: "1.0.9"
+version: "1.0.10"
 slug: "keycloak"
 arch:
   - aarch64
@@ -12,8 +12,8 @@ map:
   - share:rw
   - ssl
 ports:
-  8080/tcp: null
-  8443/tcp: null
+  8080/tcp: 9002
+  8443/tcp: 9003
   9000/tcp: null
 ports_description:
   8080/tcp: Web interface (http)
