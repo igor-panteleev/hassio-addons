@@ -1,7 +1,6 @@
-http-enabled=true
+http-enabled={{ .http_enabled }}
 hostname-strict=false
-hostname-debug=true
-proxy-headers=xforwarded
+hostname-debug={{ .hostname_debug }}
 
 db={{ .db }}
 db-username={{ .db_username }}

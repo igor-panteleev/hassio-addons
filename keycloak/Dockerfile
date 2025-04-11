@@ -21,3 +21,5 @@ RUN unzip /tmp/keycloak.zip -d /tmp \
       /tmp/*
 
 COPY rootfs /
+WORKDIR ${APP_DIR}
+RUN "${APP_DIR}/bin/kc.sh" build
