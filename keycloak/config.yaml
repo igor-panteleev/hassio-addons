@@ -1,6 +1,6 @@
 name: "Keycloak"
 description: "Keycloak"
-version: "1.0.0"
+version: "1.0.1"
 slug: "keycloak"
 arch:
   - aarch64
@@ -22,7 +22,7 @@ options:
     url: "jdbc:postgresql://database/keycloak"
 schema:
   hostname: str
-  hostname-admin: str
+  hostname_admin: str
   database:
     type: list(mariadb|mssql|mysql|postgres)
     username: str

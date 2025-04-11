@@ -4,7 +4,7 @@ set -e
 
 bashio::var.json \
     hostname "$(bashio::config 'hostname')" \
-    hostname_admin "$(bashio::config 'hostname-admin')" \
+    hostname_admin "$(bashio::config 'hostname_admin')" \
     db "$(bashio::config 'database.type')" \
     db_username "$(bashio::config 'database.username')" \
     db_password "$(bashio::config 'database.password')" \
