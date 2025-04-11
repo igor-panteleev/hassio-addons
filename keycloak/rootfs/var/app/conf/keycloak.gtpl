@@ -1,6 +1,7 @@
 http-enabled=true
 hostname={{ .hostname }}
 hostname-admin={{ .hostname_admin }}
+proxy=edge
 
 db={{ .db }}
 db-username={{ .db_username }}
