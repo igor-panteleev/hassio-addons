@@ -1,6 +1,6 @@
 http-enabled=true
-hostname={{ .hostname }}
 hostname-strict=false
+hostname-debug=true
 
 db={{ .db }}
 db-username={{ .db_username }}
