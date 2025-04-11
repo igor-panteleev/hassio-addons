@@ -4,11 +4,10 @@ set -e
 
 bashio::var.json \
     hostname "$(bashio::config 'hostname')" \
-    hostname_admin "$(bashio::config 'hostname_admin')" \
-    db "$(bashio::config 'database.type')" \
-    db_username "$(bashio::config 'database.username')" \
-    db_password "$(bashio::config 'database.password')" \
-    db_url "$(bashio::config 'database.url')" |
+    db "$(bashio::config 'db_type')" \
+    db_username "$(bashio::config 'db_username')" \
+    db_password "$(bashio::config 'db_password')" \
+    db_url "$(bashio::config 'db_url')" |
 tempio \
     -template /var/app/conf/keycloak.gtpl \
     -out /var/app/conf/keycloak.conf

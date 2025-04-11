@@ -1,6 +1,6 @@
 name: "Keycloak"
 description: "Keycloak"
-version: "1.0.3"
+version: "1.0.4"
 slug: "keycloak"
 arch:
   - aarch64
