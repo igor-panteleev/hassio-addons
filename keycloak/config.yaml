@@ -1,6 +1,6 @@
 name: "Keycloak"
 description: "Keycloak"
-version: "1.0.2"
+version: "1.0.3"
 slug: "keycloak"
 arch:
   - aarch64
@@ -14,17 +14,13 @@ ports:
   8080/tcp: 9002
 options:
   hostname: keyckoak.example.com
-  hostname_admin: ka.example.com
-  database:
-    type: postgres
-    username: keycloak
-    password: homeassistant
-    url: "jdbc:postgresql://database/keycloak"
+  db_type: postgres
+  db_username: keycloak
+  db_password: homeassistant
+  db_url: "jdbc:postgresql://database/keycloak"
 schema:
   hostname: str
-  hostname_admin: str
-  database:
-    type: list(mariadb|mssql|mysql|postgres)
-    username: str
-    password: password
-    url: str
+  db_type: list(mariadb|mssql|mysql|postgres)
+  db_username: str
+  db_password: password
+  db_url: str
