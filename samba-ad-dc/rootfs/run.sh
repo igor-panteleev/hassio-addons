@@ -17,11 +17,11 @@ if [ ! -f /data/private/sam.ldb ]; then
       -template /etc/resolv.gtpl \
       -out /etc/resolv.conf
 
-  RANDOM_PASSWORD=$(bashio::var.random 20)
+  RANDOM_PASSWORD=$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c 20)
   samba-tool domain provision \
     --adminpass="${RANDOM_PASSWORD}"
   cp /data/private/krb5.conf /etc/krb5.conf
-  echo "Admin password ${RANDOM_PASSWORD}"
+  echo "Admin password: ${RANDOM_PASSWORD}"
 
   exit 0
 else
