@@ -37,4 +37,4 @@ options:
 schema:
   domain: str
   realm: str
-  forwarder: str
+  dns_forwarder: str
