@@ -1,0 +1,40 @@
+name: "Samba AD DC"
+description: "Active Directory Domain Controller using Samba 4"
+version: "1.0.0"
+slug: "samba_ad_dc"
+arch:
+  - aarch64
+  - amd64
+  - armhf
+  - armv7
+  - i386
+init: false
+image: "ghcr.io/igor-panteleev/{arch}-hassio-samba-ad-dc"
+url: "https://github.com/igor-panteleev/hassio-addons/tree/main/samba-ad-dc"
+map:
+  - share:rw
+  - ssl
+ports:
+  53/tcp: 53
+  53/udp: 53
+  88/tcp: 88
+  88/udp: 88
+  135/tcp: 135
+  137/udp: 137
+  138/udp: 138
+  139/tcp: 139
+  389/tcp: 389
+  445/tcp: 445
+  464/tcp: 464
+  464/udp: 464
+  636/tcp: 636
+  3268/tcp: 3268
+  3269/tcp: 3269
+options:
+  domain: HOME
+  realm: example.com
+  dns_forwarder: 1.1.1.1
+schema:
+  domain: str
+  realm: str
+  forwarder: str
