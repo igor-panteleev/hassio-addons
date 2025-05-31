@@ -1,6 +1,6 @@
 name: "Samba AD DC"
 description: "Active Directory Domain Controller using Samba 4"
-version: "1.0.1"
+version: "1.0.2"
 slug: "samba_ad_dc"
 arch:
   - aarch64
