@@ -19,6 +19,11 @@ if [ ! -f /data/private/sam.ldb ]; then
 
   RANDOM_PASSWORD=$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c 20)
   samba-tool domain provision \
+    --use-rfc2307 \
+    --realm="$(bashio::config 'realm')" \
+    --domain="$(bashio::config 'domain')" \
+    --server-role=dc \
+    --dns-backend=SAMBA_INTERNAL \
     --adminpass="${RANDOM_PASSWORD}"
   cp /data/private/krb5.conf /etc/krb5.conf
   echo "Admin password: ${RANDOM_PASSWORD}"
