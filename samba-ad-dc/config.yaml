@@ -1,6 +1,6 @@
 name: "Samba AD DC"
 description: "Active Directory Domain Controller using Samba 4"
-version: "1.0.2"
+version: "1.0.3"
 slug: "samba_ad_dc"
 arch:
   - aarch64
@@ -31,10 +31,12 @@ ports:
   3268/tcp: 3268
   3269/tcp: 3269
 options:
+  provisioning: true
   domain: HOME
   realm: example.com
   dns_forwarder: 1.1.1.1
 schema:
+  provisioning: bool
   domain: str
   realm: str
   dns_forwarder: str
