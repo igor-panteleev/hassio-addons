@@ -10,8 +10,8 @@ if bashio::config.true 'provisioning'; then
       hostname "$(bashio::addon.ip_address)" \
       realm "$(bashio::config 'realm')" \
       domain "$(bashio::config 'domain')" \
-      dns_forwarder "$(bashio::config 'dns_forwarder')") \
-      data_path "${DATA_PATH}"
+      dns_forwarder "$(bashio::config 'dns_forwarder')" \
+      data_path "${DATA_PATH}")
 
   echo "$CONFIG_JSON" | tempio \
       -template /etc/samba/smb.gtpl \
