@@ -4,6 +4,65 @@ set -e
 
 DATA_PATH="/data/smb"
 
+generate_password() {
+    local length group_string pool="" char
+    local upper="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    local lower="abcdefghijklmnopqrstuvwxyz"
+    local digit="0123456789"
+    local special="@#$%&*+="
+    local -a required_chars all_chars
+
+    length="${1:-12}"
+    group_string="${2:-upper|lower|digit|special}"
+
+    # Split group_string into array
+    IFS='|' read -r -a groups <<< "$group_string"
+
+    # Validate length
+    if [ "$length" -lt "${#groups[@]}" ]; then
+        echo "Error: Length must be at least ${#groups[@]} for selected groups" >&2
+        return 1
+    fi
+
+    # Select one char from each group and build full character pool
+    for group in "${groups[@]}"; do
+        case "$group" in
+            upper)
+                char=$(echo "$upper" | fold -w1 | shuf | head -n1)
+                pool+="$upper"
+                ;;
+            lower)
+                char=$(echo "$lower" | fold -w1 | shuf | head -n1)
+                pool+="$lower"
+                ;;
+            digit)
+                char=$(echo "$digit" | fold -w1 | shuf | head -n1)
+                pool+="$digit"
+                ;;
+            special)
+                char=$(echo "$special" | fold -w1 | shuf | head -n1)
+                pool+="$special"
+                ;;
+            *)
+                echo "Unknown group: $group" >&2
+                return 1
+                ;;
+        esac
+        required_chars+=("$char")
+    done
+
+    # Fill the rest with random chars from combined pool
+    all_chars=("${required_chars[@]}")
+    while [ "${#all_chars[@]}" -lt "$length" ]; do
+        char=$(echo "$pool" | fold -w1 | shuf | head -n1)
+        all_chars+=("$char")
+    done
+
+    # Shuffle final password
+    printf "%s\n" "${all_chars[@]}" | shuf | tr -d '\n '
+    echo
+}
+
 if bashio::config.true 'provisioning'; then
   rm -rf "${DATA_PATH}"
   CONFIG_JSON=$(bashio::var.json \
@@ -21,16 +80,16 @@ if bashio::config.true 'provisioning'; then
       -template /etc/resolv.gtpl \
       -out /etc/resolv.conf
 
-  RANDOM_PASSWORD=$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c 20)
+  PASSWORD=$(generate_password)
   samba-tool domain provision \
     --use-rfc2307 \
     --realm="$(bashio::config 'realm')" \
     --domain="$(bashio::config 'domain')" \
     --server-role=dc \
     --dns-backend=SAMBA_INTERNAL \
-    --adminpass="${RANDOM_PASSWORD}"
+    --adminpass="${PASSWORD}"
   cp "${DATA_PATH}/private/krb5.conf" /etc/krb5.conf
-  echo "Admin password: ${RANDOM_PASSWORD}"
+  echo "Admin password: ${PASSWORD}"
 
   bashio::config.suggest.false 'provisioning' 'Initial setup is done.'
 
