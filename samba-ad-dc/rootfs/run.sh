@@ -2,7 +2,7 @@
 # shellcheck shell=bash
 set -e
 
-DATA_PATH="/data/smb"
+DATA_DIR="/data/smb"
 
 generate_password() {
     local length group_string pool="" char
@@ -64,13 +64,15 @@ generate_password() {
 }
 
 if bashio::config.true 'provisioning'; then
-  rm -rf "${DATA_PATH}"
+  rm -rf "${DATA_DIR}"
+  mkdir -p "${DATA_DIR}"
+
   CONFIG_JSON=$(bashio::var.json \
       hostname "$(bashio::addon.ip_address)" \
       realm "$(bashio::config 'realm')" \
       domain "$(bashio::config 'domain')" \
       dns_forwarder "$(bashio::config 'dns_forwarder')" \
-      data_path "${DATA_PATH}")
+      data_dir "${DATA_DIR}")
 
   echo "$CONFIG_JSON" | tempio \
       -template /etc/samba/smb.gtpl \
@@ -88,7 +90,7 @@ if bashio::config.true 'provisioning'; then
     --server-role=dc \
     --dns-backend=SAMBA_INTERNAL \
     --adminpass="${PASSWORD}"
-  cp "${DATA_PATH}/private/krb5.conf" /etc/krb5.conf
+  cp "${DATA_DIR}/private/krb5.conf" /etc/krb5.conf
   echo "Admin password: ${PASSWORD}"
 
   bashio::config.suggest.false 'provisioning' 'Initial setup is done.'

@@ -6,12 +6,12 @@
 	server role = active directory domain controller
 	workgroup = {{ .domain }}
 	idmap_ldb:use rfc2307 = yes
-	posix:eadb = {{ .data_path }}/private/eadb.tdb
+	posix:eadb = {{ .data_dir }}/private/eadb.tdb
 
 	# Redirect important state to /data (persistent)
-	state directory = {{ .data_path }}/state
-	private dir = {{ .data_path }}/private
-	cache directory = {{ .data_path }}/cache
+	state directory = {{ .data_dir }}/state
+	private dir = {{ .data_dir }}/private
+	cache directory = {{ .data_dir }}/cache
 
 	# Optional, but avoids runtime files persisting
 	lock directory = /run/samba/lock
@@ -19,9 +19,9 @@
 	ncalrpc dir = /run/samba/ncalrpc
 
 [sysvol]
-	path = {{ .data_path }}/sysvol
+	path = {{ .data_dir }}/sysvol
 	read only = No
 
 [netlogon]
-	path = {{ .data_path }}/sysvol/{{ .realm }}/scripts
+	path = {{ .data_dir }}/sysvol/{{ .realm }}/scripts
 	read only = No
