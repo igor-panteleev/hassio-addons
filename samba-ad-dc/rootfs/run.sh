@@ -63,7 +63,7 @@ generate_password() {
     echo
 }
 
-bashio::log.level bashio::config 'log_level'
+bashio::log.level "$(bashio::config 'log_level')"
 
 if bashio::config.true 'provisioning'; then
   rm -rf "${DATA_DIR}"
