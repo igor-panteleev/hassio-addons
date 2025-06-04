@@ -63,6 +63,8 @@ generate_password() {
     echo
 }
 
+bashio::log.level bashio::config 'log_level'
+
 if bashio::config.true 'provisioning'; then
   rm -rf "${DATA_DIR}"
   mkdir -p "${DATA_DIR}"
@@ -91,11 +93,14 @@ if bashio::config.true 'provisioning'; then
     --dns-backend=SAMBA_INTERNAL \
     --adminpass="${PASSWORD}"
   cp "${DATA_DIR}/private/krb5.conf" /etc/krb5.conf
-  echo "Admin password: ${PASSWORD}"
+  bashio::log.yellow "Admin password: ${PASSWORD}"
 
   bashio::config.suggest.false 'provisioning' 'Initial setup is done.'
 
   exit 0
 else
+  bashio::log.debug "smb.conf" "$(cat /etc/samba/smb.conf)"
+  bashio::log.debug "resolv.conf" "$(cat /etc/resolv.conf)"
+  bashio::log.debug "krb5.conf" "$(cat /etc/krb5.conf)"
   exec samba -i -M single
 fi
